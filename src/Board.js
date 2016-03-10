@@ -121,21 +121,21 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      var conflictCount = 0;
-      for (var i = 0; i < colIndex.length; i++) {
-        if (colIndex[i] !== 0) {
-          conflictCount++;
-        }
-      }
-      if (conflictCount > 1) {
-        return true;
-      }
-      return false;
+      return this.hasRowConflictAt(colIndex);
+      // var conflictCount = 0;
+      // for (var i = 0; i < colIndex.length; i++) {
+      //   if (colIndex[i] !== 0) {
+      //     conflictCount++;
+      //   }
+      // }
+      // if (conflictCount > 1) {
+      //   return true;
+      // }
+      // return false;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      debugger;
       var col = [];
       var arrayCount = this.attributes.n;
       var isTrue = false;
@@ -162,11 +162,67 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      return this.hasRowConflictAt(majorDiagonalColumnIndexAtFirstRow); // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      var diagonalArr = [];
+      var indicesArr = [];
+      var n = this.attributes.n;
+      var isTrue = false;
+      var key = (n - 1);
+
+      var arr1 = [];
+
+      for (var i = 0; i < n; i++) {
+        debugger;
+          // if i === 0 you can't step back, only 1 element array
+        if (i === 0) {
+          arr1.push(this.attributes[key][i]);
+        } else {
+          arr1 = [];
+          for (var j = i; j >= 0; j--) {
+            arr1.push(this.attributes[key][j]);
+          }
+          console.log(arr1);
+
+          isTrue = this.hasMajorDiagonalConflictAt(arr1);
+          console.log(isTrue);
+
+          if (isTrue) {
+            return true;
+          }
+        }
+      }
+
+      arr1 = [];
+
+      //for (keys in obj) {
+              
+      for (var i = 1; i < this.attributes.n; i++) {
+        for (var j = 0; j < this.attributes.n - i; j++) {
+          var k = j;
+          var l = i + j;              
+          arr1.push(this.attributes[k][l]);        
+        }
+        isTrue = this.hasMajorDiagonalConflictAt(arr1);
+        if (isTrue) {
+          return true;
+        }
+        arr1 = [];
+      }
+      // Helper function to get all indices of pieces in a row.
+      // var getAllIndexes = function (arr, val) {
+      //   var indexes = [];
+      //   for (i = 0; i < arr.length; i++) {
+      //     if (arr[i] === val) {
+      //       indexes.push(i);
+      //     }
+      //   }
+      //   return indexes;
+      // };
+      // Loop to find the diagonal values.
       return false; // fixme
     },
 
