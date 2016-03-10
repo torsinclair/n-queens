@@ -167,62 +167,42 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var diagonalArr = [];
-      var indicesArr = [];
       var n = this.attributes.n;
       var isTrue = false;
-      var key = (n - 1);
+      var majDiagonalArr = [];
+      var thisRow = 0;
+      var diagSize = n;
 
-      var arr1 = [];
-
-      for (var i = 0; i < n; i++) {
-        debugger;
-          // if i === 0 you can't step back, only 1 element array
-        if (i === 0) {
-          arr1.push(this.attributes[key][i]);
-        } else {
-          arr1 = [];
-          for (var j = i; j >= 0; j--) {
-            arr1.push(this.attributes[key][j]);
-          }
-          console.log(arr1);
-
-          isTrue = this.hasMajorDiagonalConflictAt(arr1);
-          console.log(isTrue);
-
-          if (isTrue) {
-            return true;
-          }
+      //Check diagonals below row 0 index 0
+      for (var numPushes = 0; numPushes < n; numPushes++) {
+        majDiagonalArr = [];
+        thisRow = numPushes;
+        for (var i = 0; i < diagSize; i++) {
+          majDiagonalArr.push(this.attributes[thisRow][i]);
+          thisRow++;
         }
+        isTrue = this.hasMajorDiagonalConflictAt(majDiagonalArr);
+        if (isTrue) {
+          return true;
+        }
+        diagSize--;
       }
+      //reset majDiagonalArr
+      majDiagonalArr = [];
 
-      arr1 = [];
-
-      //for (keys in obj) {
-              
+      //Check diagonals above row 0 index 0              
       for (var i = 1; i < this.attributes.n; i++) {
         for (var j = 0; j < this.attributes.n - i; j++) {
           var k = j;
           var l = i + j;              
-          arr1.push(this.attributes[k][l]);        
+          majDiagonalArr.push(this.attributes[k][l]);        
         }
-        isTrue = this.hasMajorDiagonalConflictAt(arr1);
+        isTrue = this.hasMajorDiagonalConflictAt(majDiagonalArr);
         if (isTrue) {
           return true;
         }
-        arr1 = [];
+        majDiagonalArr = [];
       }
-      // Helper function to get all indices of pieces in a row.
-      // var getAllIndexes = function (arr, val) {
-      //   var indexes = [];
-      //   for (i = 0; i < arr.length; i++) {
-      //     if (arr[i] === val) {
-      //       indexes.push(i);
-      //     }
-      //   }
-      //   return indexes;
-      // };
-      // Loop to find the diagonal values.
       return false; // fixme
     },
 
@@ -233,14 +213,53 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      return this.hasRowConflictAt(minorDiagonalColumnIndexAtFirstRow);
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
+      var matrix = this.attributes;
+      var n = this.attributes.n;
+      var isTrue = false;
+      var minDiagonalArr = [];
+      var thisRow = 0;
+      var thisIndex = 1;
+      var diagSize = 2;
+      for (var numPushes = 1; numPushes < n; numPushes++) {
+        minDiagonalArr = [];
+        thisRow = 0;
+        for (var i = thisIndex; i > -1; i--) {
+          minDiagonalArr.push(matrix[thisRow][i]);
+          thisRow++;
+        }
+        isTrue = this.hasMinorDiagonalConflictAt(minDiagonalArr);
+        if (isTrue) {
+          return true;
+        }
+        thisIndex++;
+        diagSize++;
+      }
+
+      diagSize = 0;
+      for (var r = 1; r < n; r++) {
+        debugger;
+        minDiagonalArr = [];
+        thisRow = r;
+        for (var index = n - 1; index > diagSize; index--) {
+          minDiagonalArr.push(matrix[thisRow][index]);
+          thisRow++;
+        }
+        isTrue = this.hasMinorDiagonalConflictAt(minDiagonalArr);
+        if (isTrue) {
+          return true;
+        }
+        diagSize++;
+      }
+
+
+
       return false; // fixme
     }
-
     /*--------------------  End of Helper Functions  ---------------------*/
 
 
