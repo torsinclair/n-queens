@@ -88,9 +88,8 @@
       if (conflictCount > 1) {
         return true;
       }
-      return false; // fixme
+      return false;
     },
-
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       var isTrue = false;
@@ -101,17 +100,7 @@
           return true;
         }
       }
-
-      // for (var k in this.attributes) {
-      //   var row = this.attributes[k];
-      //   if (Array.isArray(row)) {
-      //     var onesArr = row.filter(function (val) { return val === 1; });
-      //     if (onesArr.length > 2) {
-      //       return true;
-      //     }
-      //   }
-      // }
-      return false; // fixme
+      return false;
     },
 
 
@@ -122,16 +111,6 @@
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
       return this.hasRowConflictAt(colIndex);
-      // var conflictCount = 0;
-      // for (var i = 0; i < colIndex.length; i++) {
-      //   if (colIndex[i] !== 0) {
-      //     conflictCount++;
-      //   }
-      // }
-      // if (conflictCount > 1) {
-      //   return true;
-      // }
-      // return false;
     },
 
     // test if any columns on this board contain conflicts
@@ -242,7 +221,6 @@
 
       diagSize = 0;
       for (var r = 1; r < n; r++) {
-        debugger;
         minDiagonalArr = [];
         thisRow = r;
         for (var index = n - 1; index > diagSize; index--) {

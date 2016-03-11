@@ -16,8 +16,20 @@
 
 
 window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
-
+  var board = new Board({n: n});
+  // look through the board and find a spot to toggle a rook attribute, array
+    // check for conflicts at that spot
+      // place rook
+  var element = 0;
+  // for (var i = 0; i < n; i++) {
+  //   for (var r = 0; r < n; r++) {
+  //     element = board.attributes[r][i];
+  //     if (board.hasRowConflictAt(r) && board.hasColConflictAt(i)) {
+        
+  //     }
+  //   }
+  // }
+  var solution;
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
 };
