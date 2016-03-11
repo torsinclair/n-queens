@@ -78,6 +78,7 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
+
     hasRowConflictAt: function(rowIndex) {
       var conflictCount = 0;
       for (var i = 0; i < rowIndex.length; i++) {
@@ -89,6 +90,18 @@
         return true;
       }
       return false;
+    },
+
+    hasRowConflictAt2: function(rowindex) {
+      var row = this.attributes[rowindex];
+      var result = row.reduce(function(a, b) {
+        return a + b;
+      });
+      if (result > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
@@ -111,6 +124,21 @@
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
       return this.hasRowConflictAt(colIndex);
+    },
+
+    hasColConflictAt2: function(colIndex) {
+      var col = [];
+      for (var r = 0; r < this.attributes.n; r++) {
+        col.push(this.attributes[r][colIndex]);
+      }
+      var result = col.reduce(function(a, b) {
+        return a + b;
+      });
+      if (result > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     // test if any columns on this board contain conflicts
