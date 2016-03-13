@@ -28,11 +28,11 @@
       this.get(rowIndex)[colIndex] = + !this.get(rowIndex)[colIndex];
       this.trigger('change');
     },
-
+    //run on object
     _getFirstRowColumnIndexForMajorDiagonalOn: function(rowIndex, colIndex) {
       return colIndex - rowIndex;
     },
-
+    //run on object
     _getFirstRowColumnIndexForMinorDiagonalOn: function(rowIndex, colIndex) {
       return colIndex + rowIndex;
     },
@@ -176,7 +176,7 @@
       var arr1 = [];
 
       for (var i = 0; i < n; i++) {
-        debugger;
+        
           // if i === 0 you can't step back, only 1 element array
         if (i === 0) {
           arr1.push(this.attributes[key][i]);
