@@ -28,11 +28,11 @@
       this.get(rowIndex)[colIndex] = + !this.get(rowIndex)[colIndex];
       this.trigger('change');
     },
-    //run on object
+
     _getFirstRowColumnIndexForMajorDiagonalOn: function(rowIndex, colIndex) {
       return colIndex - rowIndex;
     },
-    //run on object
+
     _getFirstRowColumnIndexForMinorDiagonalOn: function(rowIndex, colIndex) {
       return colIndex + rowIndex;
     },
@@ -68,7 +68,6 @@
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
     \__ \ || (_| | |  | |_  | | | |  __/ | |  __/_
     |___/\__\__,_|_|   \__| |_| |_|\___|_|  \___(_)
-
  */
     /*=========================================================================
     =                 TODO: fill in these Helper Functions                    =
@@ -79,6 +78,7 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
+
       var row = this.get(rowIndex);
       var count = 0;
 
@@ -100,8 +100,10 @@
         }
       }
 
-      return false; // fixme
-    },
+      return false;
+          },
+
+
 
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
@@ -133,6 +135,8 @@
 
       return false;
           },
+
+
 
     // Major Diagonals - go from top-left to bottom-right
     // --------------------------------------------------------------
@@ -168,6 +172,8 @@
 
       return false;
           },
+
+
 
     // Minor Diagonals - go from top-right to bottom-left
     // --------------------------------------------------------------
